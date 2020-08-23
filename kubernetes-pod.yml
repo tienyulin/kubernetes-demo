@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubernetes-pod
+  labels:
+    name: k8s-pod
+spec:
+  containers:
+  - name: portainer
+    image: portainer/portainer:latest
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 9000
