@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubernetes-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: k8s-portainer
+  template:
+    metadata:
+      labels:
+        app: k8s-portainer
+    spec:
+      containers:
+      - name: portainer
+        image: portainer/portainer:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 9000
