@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: kubernetes-ingress
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /portainer
+        backend:
+          serviceName: portainer-service
+          servicePort: 80
+      - path: /rancher
+        backend:
+          serviceName: rancher-service
+          servicePort: 80
+  - host: portainer.example.com 
+    http:
+      paths:
+      - backend:
+          serviceName: portainer-service
+          servicePort: 80
+  - host: rancher.example.com
+    http:
+      paths:
+      - backend:
+          serviceName: rancher-service
+          servicePort: 80
