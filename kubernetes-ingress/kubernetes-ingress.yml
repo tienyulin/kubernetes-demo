@@ -4,32 +4,34 @@ metadata:
   name: host-based-ingress
 spec:
   rules:
-  - host: portainer.demo.com 
+  - host: blue.demo.com 
     http:
       paths:
       - backend:
-          serviceName: portainer-service
+          serviceName: blue-service
           servicePort: 80
-  - host: rancher.demo.com
+  - host: purple.demo.com
     http:
       paths:
       - backend:
-          serviceName: rancher-service
+          serviceName: purple-service
           servicePort: 80
 ---
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: path-based-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
   - http:
       paths:
-      - path: /portainer
+      - path: /blue
         backend:
-          serviceName: portainer-service
+          serviceName: blue-service
           servicePort: 80
-      - path: /rancher
+      - path: /purple
         backend:
-          serviceName: rancher-service
+          serviceName: purple-service
           servicePort: 80

@@ -1,47 +1,47 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: portainer-deployment
+  name: blue-deployment
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: portainer
+      app: blue
   template:
     metadata:
       labels:
-        app: portainer
+        app: blue
     spec:
       containers:
-      - name: portainer
-        image: portainer/portainer:latest
+      - name: blue
+        image: hcwxd/blue-whale
         resources:
           limits:
             memory: "128Mi"
             cpu: "500m"
         ports:
-        - containerPort: 9000
+        - containerPort: 3000
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: rancher-deployment
+  name: purple-deployment
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: rancher
+      app: purple
   template:
     metadata:
       labels:
-        app: rancher
+        app: purple
     spec:
       containers:
-      - name: rancher
-        image: rancher/server:latest
+      - name: purple
+        image: hcwxd/purple-whale
         resources:
           limits:
             memory: "128Mi"
             cpu: "500m"
         ports:
-        - containerPort: 8080
+        - containerPort: 3000
